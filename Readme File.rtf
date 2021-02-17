@@ -1,0 +1,65 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 To Run:
+\f1\b0 \
+\
+1. Import all libraries: \
+\
+		!curl -s https://course.fast.ai/setup/colab | bash\
+		from fastai import *\
+		from fastai.vision import *\
+		import numpy as np\
+		from fastai.metrics import accuracy\
+\
+2. Import drive:\
+\
+		from google.colab import drive\
+		drive.mount('/content/drive/')\
+\
+3. Load Model:\
+\
+		my_trained_mod.save('ImageClassifier_CrossValidation1')\
+\
+4. Import Dataset:\
+\
+		tfms = get_transforms(do_flip=False)\
+		path = '/content/drive/My Drive/fastAI/IC'\
+		data = ImageDataBunch.from_folder(path,ds_tfms=tfms, size=240)\
+\
+
+\f0\b Note: 
+\f1\b0 \
+\
+1.Depending on the naming files you have saved, some parameters might need to be changed in the above fields. For any clarification please contact me. \
+\
+\
+2. Make sure to run this model from google colab using the same naming conventions for the train and validate files.\
+\
+
+\f0\b Example To Run The First Set:
+\f1\b0 \
+\
+!curl -s https://course.fast.ai/setup/colab | bash\
+\
+from fastai import *\
+from fastai.vision import *\
+import numpy as np\
+from fastai.metrics import accuracy\
+\
+from google.colab import drive\
+drive.mount('/content/drive/')\
+\
+tfms = get_transforms(do_flip=False)\
+path = '/content/drive/My Drive/fastAI/IC'\
+data = ImageDataBunch.from_folder(path,ds_tfms=tfms, size=240)\
+\
+my_trained_mod.load('ImageClassifier_CrossValidation1')\
+\
+my_trained_mod.fit_one_cycle(8, max_lr=slice(1e-4,1e-3))\
+\
+}
